@@ -1,5 +1,6 @@
 package se.lexicon;
 
+import java.time.LocalTime;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -14,25 +15,38 @@ public class Main {
         double eurToSek = 11.63;   // 1 EUR = 11.63 SEK
 
         Scanner scanner = new Scanner(System.in);
-            int SEK, USD, EURO;
+        scanner.useLocale(java.util.Locale.US);
+        int choice = -1;
 
-
+    do {
         System.out.println("Currency Converter App:");
         System.out.println("1. Convert SEK to USD");
         System.out.println("2. Convert USD to SEK");
         System.out.println("3. Convert SEK to EURO");
         System.out.println("4. Convert EURO to SEK");
         System.out.println("0. Exit");
+        System.out.println("-----------------------");
 
         System.out.print("Choose an option: ");
-        int choice = scanner.nextInt();
 
+        if (scanner.hasNextInt()) {
+            choice = scanner.nextInt();
+        } else {
+            System.out.println("Invalid input. Please enter a number.");
+            scanner.next();
+            continue;
+        }
+
+
+            LocalTime currentTime = LocalTime.now();
         switch (choice) {
             case 1:
                 System.out.print("Enter amount in SEK: ");
                 double sekAmount = scanner.nextDouble();
                 double usdAmount = sekAmount * sekToUsd;
                 System.out.printf("%.2f SEK = %.2f USD%n", sekAmount, usdAmount);
+                System.out.println("Conversion done on: " + LocalTime.now());
+                System.out.println("-----------------------");
                 break;
 
             case 2:
@@ -40,6 +54,8 @@ public class Main {
                 double usdInput = scanner.nextDouble();
                 double sekResult = usdInput * usdToSek;
                 System.out.printf("%.2f USD = %.2f SEK%n", usdInput, sekResult);
+                System.out.println("Conversion done on: " + LocalTime.now());
+                System.out.println("-----------------------");
                 break;
 
             case 3:
@@ -47,6 +63,8 @@ public class Main {
                 double sekToEurAmount = scanner.nextDouble();
                 double eurResult = sekToEurAmount * sekToEur;
                 System.out.printf("%.2f SEK = %.2f EUR%n", sekToEurAmount, eurResult);
+                System.out.println("Conversion done on: " + LocalTime.now());
+                System.out.println("-----------------------");
                 break;
 
             case 4:
@@ -54,6 +72,8 @@ public class Main {
                 double eurInput = scanner.nextDouble();
                 double sekOutput = eurInput * eurToSek;
                 System.out.printf("%.2f EUR = %.2f SEK%n", eurInput, sekOutput);
+                System.out.println("Conversion done on: " + LocalTime.now());
+                System.out.println("-----------------------");
                 break;
 
             case 0:
@@ -62,11 +82,12 @@ public class Main {
 
             default:
                 System.out.println("Invalid choice. Please try again.");
+        }
+    } while (choice !=0);
+
+
+
+
 
         }
-
-
-
-
-    }
 }
