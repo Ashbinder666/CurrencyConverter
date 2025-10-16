@@ -7,6 +7,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        // --- Predefined exchange rates ---
+        double sekToUsd = 0.092;   // 1 SEK = 0.092 USD
+        double usdToSek = 10.87;   // 1 USD = 10.87 SEK
+        double sekToEur = 0.086;   // 1 SEK = 0.086 EUR
+        double eurToSek = 11.63;   // 1 EUR = 11.63 SEK
+
         Scanner scanner = new Scanner(System.in);
             int SEK, USD, EURO;
 
@@ -23,22 +29,40 @@ public class Main {
 
         switch (choice) {
             case 1:
-                System.out.println("You chose to convert SEK to USD.");
+                System.out.print("Enter amount in SEK: ");
+                double sekAmount = scanner.nextDouble();
+                double usdAmount = sekAmount * sekToUsd;
+                System.out.printf("%.2f SEK = %.2f USD%n", sekAmount, usdAmount);
                 break;
+
             case 2:
-                System.out.println("You chose to convert USD to SEK.");
+                System.out.print("Enter amount in USD: ");
+                double usdInput = scanner.nextDouble();
+                double sekResult = usdInput * usdToSek;
+                System.out.printf("%.2f USD = %.2f SEK%n", usdInput, sekResult);
                 break;
+
             case 3:
-                System.out.println("You chose to convert SEK to EURO.");
+                System.out.print("Enter amount in SEK: ");
+                double sekToEurAmount = scanner.nextDouble();
+                double eurResult = sekToEurAmount * sekToEur;
+                System.out.printf("%.2f SEK = %.2f EUR%n", sekToEurAmount, eurResult);
                 break;
+
             case 4:
-                System.out.println("You chose to convert EURO to SEK.");
+                System.out.print("Enter amount in EUR: ");
+                double eurInput = scanner.nextDouble();
+                double sekOutput = eurInput * eurToSek;
+                System.out.printf("%.2f EUR = %.2f SEK%n", eurInput, sekOutput);
                 break;
+
             case 0:
                 System.out.println("Exiting the program. Goodbye!");
                 break;
+
             default:
                 System.out.println("Invalid choice. Please try again.");
+
         }
 
 
